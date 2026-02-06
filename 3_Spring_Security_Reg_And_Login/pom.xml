@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>nit</groupId>
-	<artifactId>2_Zomato</artifactId>
+	<artifactId>3_Spring_Security_Reg_And_Login</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>2_Zomato</name>
+	<name>3_Spring_Security_Reg_And_Login</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -74,31 +74,6 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
- <!-- Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-api</artifactId>
-    <version>0.12.7</version>
-    <scope>compile</scope>
-</dependency>
-		
-	<!-- Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>0.12.7</version>
-    <scope>runtime</scope>
-</dependency>
-		<!-- Source: https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId>
-    <version>0.12.7</version>
-    <scope>runtime</scope>
-</dependency>
-		
-		
-		
 	</dependencies>
 
 	<build>
