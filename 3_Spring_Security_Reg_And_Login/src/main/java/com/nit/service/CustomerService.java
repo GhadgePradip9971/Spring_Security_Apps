@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.nit.entity.Customer;
 import com.nit.repositiory.CustomerRepositiory;
+
 @Service
 public class CustomerService implements UserDetailsService {
 	
@@ -18,13 +19,20 @@ public class CustomerService implements UserDetailsService {
 	private CustomerRepositiory customerrepo;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email)
+	        throws UsernameNotFoundException {
 
-		
-	Customer c=	customerrepo.FindByEmail(email);
-		
-		
-		return new User(c.getEmail(),c.getPwd(),Collections.emptyList());
+	    Customer c = customerrepo.findByEmail(email);
+
+	    if (c == null) {
+	        throw new UsernameNotFoundException("User not found with email: " + email);
+	    }
+
+	    return new User(
+	            c.getEmail(),
+	            c.getPwd(),
+	            Collections.emptyList()
+	    );
 	}
 
 }

@@ -7,6 +7,6 @@ import com.nit.entity.Customer;
 
 public interface CustomerRepositiory extends JpaRepository<Customer, Integer> {
 	
-	public Customer FindByEmail(String email);
+	public Customer findByEmail(String email);
 
 }
