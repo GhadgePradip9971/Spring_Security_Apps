@@ -23,16 +23,17 @@ public class RegistrationController {
 
 	private final RegistrationService registrationService;
 	
-	
 	@PostMapping("/register")
-	 public ResponseEntity<String> register(
-	            @Valid @RequestBody RegisterRequest request) {
+	public ResponseEntity<String> register(
+	        @Valid @RequestBody RegisterRequest request) {
 
-	        registrationService.register(request);
+	    registrationService.register(
+	            request.getUsername(),
+	            request.getPassword());
 
-	        return ResponseEntity.ok(
-	                "User registered successfully");
-	    }
+	    return ResponseEntity.ok(
+	            "User registered successfully");
+	}
 	
 	
 	

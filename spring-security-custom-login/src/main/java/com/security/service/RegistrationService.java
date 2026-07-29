@@ -3,9 +3,9 @@ package com.security.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.security.dto.RegisterRequest;
 import com.security.entity.Role;
 import com.security.entity.User;
+import com.security.exception.UsernameAlreadyExistsException;
 import com.security.repository.RoleRepository;
 import com.security.repository.UserRepository;
 
@@ -27,37 +27,34 @@ public class RegistrationService implements IRegistrationService{
     }
 
 	@Override
-	public void register(RegisterRequest request) {
-	
-		
-		if(userRepository.existsByUsername(request.getUsername())) {
-		    throw new RuntimeException(
-                    "Username already exists");
-        }
+	public void register(String username, String password) {
 
-		   Role role = roleRepository
-	                .findByRoleName("ROLE_USER")
-	                .orElseThrow(() ->
+	    if (userRepository.existsByUsername(username)) {
+
+	        throw new UsernameAlreadyExistsException(
+	                "Username already exists");
+	    }
+
+	    Role role = roleRepository
+	            .findByRoleName("ROLE_USER")
+	            .orElseThrow(() ->
 	                    new RuntimeException(
-	                        "Default role not found"));
-		   
-		   User user = new User();
+	                            "Default role not found"));
 
-	        user.setUsername(request.getUsername());
-	        
-	        user.setPassword(passwordEncoder.encode(request.getPassword()));
-	        user.setEnabled(true);
-	        user.setRole(role);
+	    User user = new User();
 
-	        userRepository.save(user);
-		
-		
-		
-		
-		}
-		
+	    user.setUsername(username);
+
+	    user.setPassword(
+	            passwordEncoder.encode(password));
+
+	    user.setEnabled(true);
+
+	    user.setRole(role);
+
+	    userRepository.save(user);
 	}
-    
+}
     
     
     

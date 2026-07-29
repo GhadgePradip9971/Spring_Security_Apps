@@ -8,7 +8,7 @@ public class HomeController {
 	
 	@GetMapping("/dashboard")
 	public String message() {
-		return "welome to dashboard";
+		return "dashboard";
 	}
 
 }

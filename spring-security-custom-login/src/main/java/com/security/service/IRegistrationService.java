@@ -1,8 +1,6 @@
 package com.security.service;
 
-import com.security.dto.RegisterRequest;
-
 public interface IRegistrationService {
-	public void register(RegisterRequest request);
+	public void register(String username,String  password);
 
 }

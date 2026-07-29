@@ -3,36 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Register</title>
 </head>
 
 <body>
 
-    <h2>Spring Security Login</h2>
+    <h2>Create Account</h2>
 
     <div th:if="${param.error}">
         <p style="color:red;">
-            Invalid username or password
+            Registration failed
         </p>
     </div>
 
-    <div th:if="${param.logout}">
-        <p style="color:green;">
-            You have been logged out successfully
-        </p>
-    </div>
-
-    <div th:if="${param.registered}">
-        <p style="color:green;">
-            Registration successful. Please login.
-        </p>
-    </div>
-
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/register}" method="post">
 
         <div>
             <label>Username:</label>
-
             <input type="text"
                    name="username"
                    required>
@@ -42,7 +29,6 @@
 
         <div>
             <label>Password:</label>
-
             <input type="password"
                    name="password"
                    required>
@@ -51,15 +37,15 @@
         <br>
 
         <button type="submit">
-            Login
+            Register
         </button>
 
     </form>
 
     <br>
 
-    <a th:href="@{/register}">
-        Create New Account
+    <a th:href="@{/login}">
+        Already have an account? Login
     </a>
 
 </body>

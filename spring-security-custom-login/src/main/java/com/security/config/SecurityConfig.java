@@ -22,7 +22,7 @@ public class SecurityConfig {
 
 				.authorizeHttpRequests(auth -> auth
 
-						.requestMatchers("/login", "/auth/register").permitAll()
+						.requestMatchers("/login","/register", "/auth/register").permitAll()
 
 						.anyRequest().authenticated())
 
