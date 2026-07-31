@@ -1,8 +1,13 @@
 package com.employee.service;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.employee.dto.LoginRequest;
+import com.employee.dto.LoginResponse;
 import com.employee.dto.RegistrationRequest;
 import com.employee.dto.RegistrationResponse;
 import com.employee.entity.Role;
@@ -15,12 +20,14 @@ public class AuthService  implements IAuthService{
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final AuthenticationManager authenticationManager ;
 
-	public AuthService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+	public AuthService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
 		super();
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.authenticationManager = authenticationManager;
 	}
 
 	@Override
@@ -51,7 +58,21 @@ public class AuthService  implements IAuthService{
 	}
 	
 	
-	
+	public LoginResponse login(LoginRequest request) {
+
+	    Authentication authentication =
+	            authenticationManager.authenticate(
+	                new UsernamePasswordAuthenticationToken(
+	                    request.getUsername(),
+	                    request.getPassword()
+	                )
+	            );
+
+	    return new LoginResponse(
+	            "Login successful",
+	            authentication.getName()
+	    );
+	}
 	
 	
 	
