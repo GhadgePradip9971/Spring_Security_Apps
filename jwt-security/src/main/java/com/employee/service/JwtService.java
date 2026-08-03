@@ -40,7 +40,16 @@ public class JwtService {
 	}
     
     
-    
+ // DAY 6
+    public String extractUsername(String token) {
+
+        return Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getSubject();
+    }
 
     @PostConstruct // This method runs after Spring initializes the bean
     public void init() {
